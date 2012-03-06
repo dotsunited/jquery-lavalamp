@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<title>Lavalamp Example</title>
+
+<link href="examples.css" rel="stylesheet" type="text/css">
+<link href="full.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="../jquery.lavalamp.js"></script>
+
+<script type="text/javascript">
+$(function() {
+    $.easing.easeOutBack = function (x, t, b, c, d, s) {
+        if (s === undefined) s = 1.70158;
+        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+    };
+    
+    $('.lavalamp-full').lavalamp({
+        blur: function() {
+            $(this).addClass('blur');
+        },
+        focus: function() {
+            $(this).removeClass('blur');
+        },
+        animation: Modernizr.testAllProps('transition') ? 0 : {duration: 500, easing: 'easeOutBack'}
+    });
+});
+
+</script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Full setup</h1>
+        <ul class="lavalamp-full">
+            <li><a href="#">Home</a></li>
+            <li class="current"><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+    </div>
+    
+</body>
+</html>

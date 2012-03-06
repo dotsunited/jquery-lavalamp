@@ -1,0 +1,17 @@
+body {
+    font: 13px/1.4 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    color: #444;
+}
+
+.container {
+    width: 500px;
+    margin: auto;
+}
+
+h1 {
+    border-bottom: 1px solid #d9d9d9;
+}
+
+a {
+    color: #be2221;
+}

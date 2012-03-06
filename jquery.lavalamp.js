@@ -23,13 +23,16 @@
             current: '.current',
             items: '>li',
             bubble: '<li class="lavalamp-bubble"></li>',
-            animation: 500
+            animation: 500,
+            blur: $.noop,
+            focus: $.noop
         },
         element: null,
         current: null,
         items: null,
         bubble: null,
         _bubbleAppended: false,
+        _focus: null,
         _init: function() {
             var resizeTimer,
                 self = this;
@@ -53,26 +56,22 @@
                 this.bubble.remove();
             }
 
-            this.bubble  = $.isFunction(this.options.items)
-                               ? this.options.bubble.call(this.element)
-                               : $(this.options.bubble);
-            this.items   = $.isFunction(this.options.items)
-                               ? this.options.items.call(this.element)
-                               : this.element.find(this.options.items);
-            this.current = $.isFunction(this.options.current)
-                               ? this.options.current.call(this.element)
-                               : this.element.find(this.options.current);
+            this.bubble  = $(this.options.bubble);
+            this.items   = this.element.find(this.options.items);
+            this.current = this.element.find(this.options.current);
 
             if (this.current.size() === 0) {
                 this.current = this.items.eq(0);
             }
 
             this._position();
-            
+
             if (this.element.find(this.bubble).size() === 0) {
                 this._bubbleAppended = true;
                 this.element.prepend(this.bubble);
             }
+            
+            this._position();
 
             var self = this;
 
@@ -80,19 +79,27 @@
                 .not(this.bubble)
                 .unbind('.lavalamp')
                 .bind('mouseover.lavalamp', function() {
-                    if (self.current.index(this) >= 0) {
-                        return;
-                    }
+                    if (self.current.index(this) < 0) {
+                        self.current.each(function() {
+                            self.options.blur.call(this, self);
+                        });
 
-                    self.current.trigger('lavalampblur');
-                    self._move($(this));
+                        self._move($(this));
+                    }
                 });
 
             this.element
                 .unbind('.lavalamp')
                 .bind('mouseout.lavalamp', function() {
-                    self.current.trigger('lavalampfocus');
-                    self._move(self.current);
+                    if (self.current.index(self._focus) < 0) {
+                        self._focus = null;
+
+                        self.current.each(function() {
+                            self.options.focus.call(this, self);
+                        });
+
+                        self._move(self.current);
+                    }
                 });
         },
         destroy: function() {
@@ -107,14 +114,16 @@
         _position: function() {
             this.bubble.css({
                 left:  this.current.position().left + 'px',
-                width: this.current.width()- (this.bubble.outerWidth(true) - this.bubble.innerWidth()) + 'px'
+                width: this.current.width() + 'px'
             });
         },
         _move: function(el) {
             var properties = {
                 left:  el.position().left + 'px',
-                width: el.width() - (this.bubble.outerWidth(true) - this.bubble.innerWidth()) + 'px'
+                width: el.width() + 'px'
             };
+
+            this._focus = el;
 
             if (!this.options.animation) {
                 this.bubble.css(properties);

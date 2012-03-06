@@ -1,0 +1,72 @@
+.lavalamp-full {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lavalamp-full li {
+    z-index: 2;
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.lavalamp-full a {
+  display: block;
+  text-decoration: none;
+  color: #232324;
+  padding: 4px 12px 5px 12px;
+  text-shadow: 0 1px 0 #fff;
+  border: 1px solid transparent;
+}
+
+.lavalamp-full .lavalamp-bubble {
+  z-index: 1;
+  height: 27px;
+  margin-left: -1px;
+  position: absolute;
+
+  border: 1px solid #f0f0f0;
+  background-color: #f9f9f9;
+
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  
+  -webkit-box-shadow: 0 1px 0 #fff inset;
+  -moz-box-shadow: 0 1px 0 #fff inset;
+  box-shadow: 0 1px 0 #fff inset;
+}
+
+/*** js ***/
+
+.js .lavalamp-full .lavalamp-bubble {
+  -webkit-transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
+  -moz-transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
+  -ms-transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
+  -o-transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
+  transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
+  -webkit-transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
+  -moz-transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
+  -ms-transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
+  -o-transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
+  transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
+}
+
+/*** no-js **/
+
+.no-js .lavalamp-full .current a,
+.no-js .lavalamp-full a:hover {
+  border: 1px solid #f0f0f0;
+  background-color: #f9f9f9;
+
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  
+  -webkit-box-shadow: 0 1px 0 #fff inset;
+  -moz-box-shadow: 0 1px 0 #fff inset;
+  box-shadow: 0 1px 0 #fff inset;
+}
