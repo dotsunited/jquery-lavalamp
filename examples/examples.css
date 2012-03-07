@@ -15,3 +15,18 @@ h1 {
 a {
     color: #be2221;
 }
+
+#dotsunited-tab {
+    background: transparent url(http://labs.dotsunited.de/static/img/dotsunited-tab.png) 0 0 no-repeat !important;
+    display:block !important;
+    height:127px !important;
+    width:43px !important;
+    margin:0 !important;
+    padding:0 !important;
+    position:fixed !important;
+    text-indent:-9000px;
+    top:40% !important;
+    right: 0;
+
+    z-index:100001 !important;
+}
