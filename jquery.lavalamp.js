@@ -8,32 +8,30 @@
  */
 ;(function($, window) {
     var Lavalamp = function(element, options) {
-        if (!this._init) {
+        if (!this.init) {
             return new Lavalamp(element, options);
         }
 
-        this.element = $(element).data('lavalamp', this).addClass('lavalamp');
+        this.element = $(element).data('lavalamp', this);
         this.options = $.extend({}, this.options, options);
 
-        this._init();
+        this.init();
     };
 
     Lavalamp.prototype = {
         options: {
-            current: '.current',
-            items: '>li',
-            bubble: '<li class="lavalamp-bubble"></li>',
+            current:   '.current',
+            items:     'li:not(.lavalamp-bubble)',
+            bubble:    '<li class="lavalamp-bubble"></li>',
             animation: 500,
-            blur: $.noop,
-            focus: $.noop
+            blur:      $.noop,
+            focus:     $.noop
         },
         element: null,
         current: null,
-        items: null,
-        bubble: null,
-        _bubbleAppended: false,
-        _focus: null,
-        _init: function() {
+        bubble:  null,
+        _focus:  null,
+        init: function() {
             var resizeTimer,
                 self = this;
 
@@ -43,42 +41,14 @@
                 }
 
                 resizeTimer = setTimeout(function() {
-                    self._position();
+                    self.reload();
                 }, 100);
             };
 
             $(window).bind('resize.lavalamp', this.onWindowResize);
 
-            this.reload();
-        },
-        reload: function() {
-            if (this.bubble && this._bubbleAppended) {
-                this.bubble.remove();
-            }
-
-            this.bubble  = $(this.options.bubble);
-            this.items   = this.element.find(this.options.items);
-            this.current = this.element.find(this.options.current);
-
-            if (this.current.size() === 0) {
-                this.current = this.items.eq(0);
-            }
-
-            this._position();
-
-            if (this.element.find(this.bubble).size() === 0) {
-                this._bubbleAppended = true;
-                this.element.prepend(this.bubble);
-            }
-            
-            this._position();
-
-            var self = this;
-
-            this.items
-                .not(this.bubble)
-                .unbind('.lavalamp')
-                .bind('mouseover.lavalamp', function() {
+            this.element
+                .on('mouseover.lavalamp', this.options.items, function() {
                     if (self.current.index(this) < 0) {
                         self.current.each(function() {
                             self.options.blur.call(this, self);
@@ -86,11 +56,8 @@
 
                         self._move($(this));
                     }
-                });
-
-            this.element
-                .unbind('.lavalamp')
-                .bind('mouseout.lavalamp', function() {
+                })
+                .on('mouseout.lavalamp', function() {
                     if (self.current.index(self._focus) < 0) {
                         self._focus = null;
 
@@ -101,31 +68,42 @@
                         self._move(self.current);
                     }
                 });
+
+            this.bubble = $.isFunction(this.options.bubble)
+                              ? this.options.bubble.call(this, this.element)
+                              : $(this.options.bubble).appendTo(this.element);
+
+            this.reload();
+        },
+        reload: function() {
+            this.current = this.element.find(this.options.current);
+
+            if (this.current.size() === 0) {
+                this.current = this.element.find(this.options.items).eq(0);
+            }
+
+            this._move(this.current, false);
         },
         destroy: function() {
-            if (this._bubbleAppended) {
+            if (!$.isFunction(this.options.bubble)) {
                 this.bubble.remove();
             }
 
-            this.items.unbind('.lavalamp');
             this.element.unbind('.lavalamp');
             $(window).unbind('resize.lavalamp', this.onWindowResize);
         },
-        _position: function() {
-            this.bubble.css({
-                left:  this.current.position().left + 'px',
-                width: this.current.width() + 'px'
-            });
-        },
-        _move: function(el) {
-            var properties = {
-                left:  el.position().left + 'px',
-                width: el.width() + 'px'
-            };
+        _move: function(el, animate) {
+            var pos = el.position(),
+                properties = {
+                    left:   pos.left + 'px',
+                    top:    pos.top + 'px',
+                    width:  el.innerWidth() + 'px',
+                    height: el.innerHeight() + 'px'
+                };
 
             this._focus = el;
 
-            if (!this.options.animation) {
+            if (!this.options.animation || animate === false) {
                 this.bubble.css(properties);
             } else {
                 if ($.isFunction(this.options.animation)) {
