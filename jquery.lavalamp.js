@@ -1,6 +1,6 @@
 /*!
  * jQuery Lavalamp Plugin
- * https://github.com/dotsunited/.de/jquery-lavalamp
+ * https://github.com/dotsunited/jquery-lavalamp
  *
  * Copyright 2012, Dots United GmbH
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
