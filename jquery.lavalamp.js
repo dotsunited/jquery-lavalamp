@@ -8,10 +8,6 @@
  */
 ;(function($, window) {
     var Lavalamp = function(element, options) {
-        if (!this.init) {
-            return new Lavalamp(element, options);
-        }
-
         this.element = $(element).data('lavalamp', this);
         this.options = $.extend({}, this.options, options);
 
@@ -131,7 +127,7 @@
                     $.extend(instance.options, options || {});
                     instance.reload();
                 } else {
-                    Lavalamp(this, options);
+                    new Lavalamp(this, options);
                 }
             });
         }
