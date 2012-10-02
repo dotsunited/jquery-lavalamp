@@ -81,7 +81,7 @@
             this._move(this.current, false);
         },
         destroy: function() {
-            if (!$.isFunction(this.options.bubble)) {
+            if (this.bubble) {
                 this.bubble.remove();
             }
 
