@@ -18,7 +18,7 @@
             current:   '.current',
             items:     'li:not(.lavalamp-bubble)',
             bubble:    '<li class="lavalamp-bubble"></li>',
-            animation: 500,
+            animation: 400,
             blur:      $.noop,
             focus:     $.noop
         },
