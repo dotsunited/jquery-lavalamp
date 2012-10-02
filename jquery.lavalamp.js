@@ -6,7 +6,7 @@
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * or GPL Version 2 (http://www.opensource.org/licenses/gpl-2.0.php) licenses.
  */
-;(function($, window) {
+(function($, window) {
     var Lavalamp = function(element, options) {
         this.element = $(element).data('lavalamp', this);
         this.options = $.extend({}, this.options, options);
