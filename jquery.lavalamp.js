@@ -3,8 +3,7 @@
  * https://github.com/dotsunited/jquery-lavalamp
  *
  * Copyright 2012, Dots United GmbH
- * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
- * or GPL Version 2 (http://www.opensource.org/licenses/gpl-2.0.php) licenses.
+ * Released under the MIT license (http://www.opensource.org/licenses/mit-license.php)
  */
 (function($, window) {
     var Lavalamp = function(element, options) {
