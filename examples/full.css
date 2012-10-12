@@ -42,16 +42,16 @@
 /*** js ***/
 
 .js .lavalamp-full .lavalamp-bubble {
-  -webkit-transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
-  -moz-transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
-  -ms-transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
-  -o-transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
-  transition: left 0.5s ease-in-out 0.1s, width 0.5s ease-in-out 0.1s;
-  -webkit-transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
-  -moz-transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
-  -ms-transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
-  -o-transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
-  transition: left 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s, width 0.5s cubic-bezier(0,0.5,0.5,1.25) 0.1s;
+  -webkit-transition: left 0.5s ease-in-out, width 0.5s ease-in-out;
+  -moz-transition: left 0.5s ease-in-out, width 0.5s ease-in-out;
+  -ms-transition: left 0.5s ease-in-out, width 0.5s ease-in-out;
+  -o-transition: left 0.5s ease-in-out, width 0.5s ease-in-out;
+  transition: left 0.5s ease-in-out, width 0.5s ease-in-out;
+  -webkit-transition: left 0.5s cubic-bezier(0.5,0.5,0.5,1.25), width 0.5s cubic-bezier(0.5,0.5,0.5,1.25);
+  -moz-transition: left 0.5s cubic-bezier(0.5,0.5,0.5,1.25), width 0.5s cubic-bezier(0.5,0.5,0.5,1.25);
+  -ms-transition: left 0.5s cubic-bezier(0.5,0.5,0.5,1.25), width 0.5s cubic-bezier(0.5,0.5,0.5,1.25);
+  -o-transition: left 0.5s cubic-bezier(0.5,0.5,0.5,1.25), width 0.5s cubic-bezier(0.5,0.5,0.5,1.25);
+  transition: left 0.5s cubic-bezier(0.5,0.5,0.5,1.25), width 0.5s cubic-bezier(0.5,0.5,0.5,1.25);
 }
 
 /*** no-js **/
